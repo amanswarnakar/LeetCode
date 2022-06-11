@@ -1,8 +1,8 @@
 class Solution {
 public:
     int minOperations(vector<int>& a, int x) {
-      int l = 0;
-      int ans = 0, maxLen = 0;
+      int l = 0, r = 0;
+      int ans = INT_MAX;
       int temp = 0, n = a.size();
       long long int sum = 0;
       for(auto i : a){
@@ -10,16 +10,17 @@ public:
       }
       int tar = sum - x;
       bool flag = false;
-      for(int r = 0; r < n; r++){
+      while(r < n){
         temp += a[r];
         while(l <= r and temp > tar){
           temp -= a[l++];
         }
         if(temp == tar){
           flag = true;
-          maxLen = max(maxLen, r - l + 1);
+          ans = min(ans, n - r + l - 1);
         }
+        r++;
       }
-      return flag ? n - maxLen : -1;
+      return flag ? ans : -1;
     }
 };
