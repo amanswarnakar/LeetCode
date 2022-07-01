@@ -16,7 +16,6 @@ public:
       bubbleSort2D(bt, n);
       int sum = 0, l = 0;
       while(l < n){
-        // int x = ts - bt[l][0];
         if(ts >= bt[l][0]){
           sum += bt[l][0] * bt[l][1];
           ts -= bt[l][0];
@@ -25,11 +24,6 @@ public:
           break;
         }
         l++;
-        // if(bt[l][0]){
-        //   bt[l][0]--;
-        // } else {
-        //   l++;
-        // }
       }
       return sum;
     }
