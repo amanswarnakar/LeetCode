@@ -11,9 +11,19 @@ public:
       }
     }
   
+    static bool comp(vector<int> sec, vector<int> fir)
+    {
+      if(sec.back()>fir.back())
+        return true;
+      else if(sec.back()==fir.back() and sec.front()>fir.front())
+      {
+        return true;
+      }
+      else return false;
+    }
     int maximumUnits(vector<vector<int>>& bt, int ts) {    // bt: boxTypes, ts: truckSize
       int n = bt.size(); 
-      bubbleSort2D(bt, n);
+      sort(bt.begin(),bt.end(),comp);
       int sum = 0, l = 0;
       while(l < n){
         if(ts >= bt[l][0]){
