@@ -27,11 +27,14 @@ public:
         // TC- O(n)     SC- O(n)
       
       int n = nums.size();
-      set<int> hashSet(nums.begin(), nums.end());
+      set<int> hashSet;
+      for(auto num : nums){
+        hashSet.insert(num);
+      }
       
       int ans = 0;
       
-      for(auto num : nums){
+      for(auto num : hashSet){
         if(!hashSet.count(num-1)){
           int cnt = 1;
           int num2 = num;
