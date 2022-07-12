@@ -35,7 +35,7 @@ public:
       if(l1->val > l2->val) std::swap(l1, l2);
       ListNode *res = l1;
       while(l1 != nullptr and l2 != nullptr){
-        ListNode *temp(0);
+        ListNode *temp = nullptr;
         while(l1 != nullptr and l1->val <= l2->val){
           temp = l1;
           l1 = l1->next;
