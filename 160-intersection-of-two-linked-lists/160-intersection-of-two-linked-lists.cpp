@@ -20,16 +20,25 @@ public:
         b++;
         q = q->next;
       }
+//       if(p != q){
+//         return NULL;
+//       }
       int moveA = max(0, a - b);
       int moveB = max(0, b - a);
       p = headA;
       q = headB;
+      
       while(moveA--){
         p = p->next;
       }
       while(moveB--){
         q = q->next;
       }
+//       while(p != q){
+//         p = p->next;
+//         q = q->next;
+//       }
+//       return p;  
       while(p != nullptr and q != nullptr){
         if(p == q){
           return p;
