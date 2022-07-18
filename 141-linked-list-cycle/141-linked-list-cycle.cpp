@@ -18,7 +18,7 @@ public:
       // }
       // return false;
       
-      set<ListNode *> s;
+      unordered_set<ListNode *> s;
       while(head){
         if(s.insert(head).second == false)
           return true;
