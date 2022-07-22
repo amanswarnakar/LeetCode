@@ -10,37 +10,54 @@
  */
 class Solution {
 public:
+  
+    ListNode *reverseLinkedList(ListNode *head){
+      ListNode *prev = nullptr, *nxt;
+      while(head != nullptr){
+        nxt = head->next;
+        head->next = prev;
+        prev = head;
+        head = nxt;
+      }
+      return prev;
+    }
+  
     bool isPalindrome(ListNode* head) {
       // Storing elements in a array
-      vector<int> vec;
-      while(head){
-        vec.push_back(head->val);
-        head = head->next;
+      // vector<int> vec;
+      // while(head){
+      //   vec.push_back(head->val);
+      //   head = head->next;
+      // }
+      // for(int i = 0; i < vec.size() / 2; i++){
+      //   if(vec[i] != vec[vec.size() - 1 - i])
+      //     return false;
+      // }
+      // return true;
+      
+      
+      if(head == NULL or head->next == NULL) return true;
+     
+      ListNode *dH = new ListNode(0);   // dummyHead
+      dH->next = head;
+      ListNode *fast = dH->next;
+      ListNode *slow = dH->next;
+      
+      while(fast->next and fast->next->next){
+        slow = slow->next;
+        fast = fast->next->next;
       }
-      for(int i = 0; i < vec.size() / 2; i++){
-        if(vec[i] != vec[vec.size() - 1 - i])
+      
+      slow->next = reverseLinkedList(slow->next);
+      slow = slow->next;
+      fast = dH->next;
+      
+      while(slow){
+        if(slow->val != fast->val)
           return false;
+        fast = fast->next;
+        slow = slow->next;
       }
       return true;
-      
-      
-//       if(head == NULL or head->next == NULL) return true;
-      
-//       ListNode *dummyHead = new ListNode(0);
-//       dummyHead->next = head;
-//       ListNode *temp = new ListNode(0);
-//       ListNode *fast = dummyHead->next;
-//       ListNode *slow = dummyHead->next;
-//       ListNode *prev = NULL, *nxt;
-      
-//       while(fast and fast->next){
-//         nxt = slow->next;
-//         slow->next = prev;
-//         prev = slow;
-//         slow = nxt;
-        
-//         fast = fast->next->next;
-        
-//       }
     }
 };
