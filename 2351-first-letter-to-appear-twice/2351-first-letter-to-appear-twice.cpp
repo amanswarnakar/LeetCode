@@ -1,10 +1,10 @@
 class Solution {
 public:
     char repeatedCharacter(string s) {
-      map<char, int> mp;
-      for(char ch : s){
-        mp[ch]++;
-        if(mp[ch] == 2) return ch;
+      unordered_map<char, int> ump;
+      for(int i = 0; i < s.size(); i++){
+        ump[s[i]]++;
+        if(ump[s[i]] == 2) return s[i];
       }
       return 'a';
     }
