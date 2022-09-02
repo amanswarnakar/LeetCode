@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* node, int level, vector<double> &res, vector<double> &count){
+    void dfs(TreeNode* node, int level, vector<double> &res, vector<int> &count){
       if(node == nullptr) return;
       if(level >= res.size()){
         res.push_back(node->val);
@@ -24,7 +24,8 @@ public:
       dfs(node->right, level+1, res, count);
     }
     vector<double> averageOfLevels(TreeNode* root) {
-      vector<double> ans, count, res;
+      vector<double> ans, res;
+      vector<int> count;
       dfs(root, 0, res, count);
       for(int i = 0; i < res.size(); i++){
         ans.push_back(res[i] / count[i]);
