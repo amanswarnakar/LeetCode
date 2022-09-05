@@ -29,12 +29,12 @@ public:
         vector<int> temp;
         int n = q.size();
         for(int i = 0; i < n; i++){
-          auto it = q.front();
-          temp.push_back(it->val);
-          q.pop();
-          for(auto x: it->children){
+          // auto it = q.front();
+          temp.push_back(q.front()->val);
+          for(auto x: q.front()->children){
             q.push(x);
           }
+          q.pop();
         }
         ans.push_back(temp);
       }
