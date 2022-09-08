@@ -1,11 +1,10 @@
 class Solution {
 public:
     vector<int> numsSameConsecDiff(int n, int k) {
-      vector<int> dig = {1,2,3,4,5,6,7,8,9};
-      vector<int> ans;
+      vector<int> ans = {1,2,3,4,5,6,7,8,9};
       for(int i = 2; i <= n; i++){
         vector<int> temp;
-        for(auto i : dig){
+        for(auto i : ans){
           int ld = i % 10;
           if(k + ld < 10){
             temp.push_back(i * 10 + k + ld);
@@ -14,8 +13,8 @@ public:
             temp.push_back(i * 10 + ld - k);
           }
         }
-        dig = temp;
+        ans = temp;
       }
-      return dig;
+      return ans;
     }
 };
