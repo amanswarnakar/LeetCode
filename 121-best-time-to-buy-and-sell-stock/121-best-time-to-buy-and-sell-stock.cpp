@@ -17,6 +17,7 @@ public:
       
       int n = prices.size();
       int l = 0, r = 1, ans = 0;
+      if(n == 1) return 0;
       while(r < n){
         if(prices[r] > prices[l])
           ans = max(ans, prices[r] - prices[l]);
