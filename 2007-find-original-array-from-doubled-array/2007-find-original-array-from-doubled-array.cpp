@@ -9,7 +9,7 @@ public:
             v.push_back(it.first);
         sort(v.begin(), v.end(), [](int i, int j) {return abs(i) < abs(j);});
         for (int x : v) {
-          cout<<x<<" ";
+          // cout<<x<<" ";
             if (mp[x] > mp[2 * x]) return {};
             for (int i = 0; i < mp[x]; ++i, mp[2 * x]--)
                 ans.push_back(x);
