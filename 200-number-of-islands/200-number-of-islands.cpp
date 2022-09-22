@@ -1,23 +1,23 @@
 class Solution {
 public:
-    void markCurrentIsland(vector<vector<char>> &mat, int x, int y, int r, int c){
-      if(x >= r || x < 0 || y >= c || y < 0 || mat[x][y] != '1')
+    void dfs(vector<vector<char>> &v, int r, int c){
+      if(r < 0 or r >= v.size() or c < 0 or c >= v[0].size())
         return;
-      mat[x][y] = '2';
-      markCurrentIsland(mat, x+1, y, r, c);
-      markCurrentIsland(mat, x-1, y, r, c);
-      markCurrentIsland(mat, x, y+1, r, c);
-      markCurrentIsland(mat, x, y-1, r, c);
+      if(v[r][c] == '1'){
+        v[r][c] = '2';
+        dfs(v, r+1, c);
+        dfs(v, r-1, c);
+        dfs(v, r, c+1);
+        dfs(v, r, c-1);
+      }
     }
+  
     int numIslands(vector<vector<char>>& grid) {
-      int r = grid.size();
-      if(r == 0) return 0;
-      int c = grid[0].size();
-      int ans = 0;
-      for(int i = 0; i < r; i++){
-        for(int j = 0; j < c; j++){
+      int m = grid.size(), n = grid[0].size(), ans = 0;
+      for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
           if(grid[i][j] == '1'){
-            markCurrentIsland(grid, i, j, r, c);
+            dfs(grid, i, j);
             ans++;
           }
         }
