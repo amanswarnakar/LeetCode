@@ -19,8 +19,8 @@ public:
       }
       for(int i = 0; i < n; i++){
         if(d[i] == 'R'){
-          rd[i] = 0;
           // fr = i; 
+          rd[i] = 0;
         }
         
         else if(d[i] == 'L')
