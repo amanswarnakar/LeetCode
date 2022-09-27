@@ -19,8 +19,8 @@ public:
       }
       for(int i = 0; i < n; i++){
         if(d[i] == 'R'){
-          fr = i; 
           rd[i] = 0;
+          // fr = i; 
         }
         
         else if(d[i] == 'L')
@@ -30,7 +30,8 @@ public:
       }
       for(int i = n - 1; i >= 0; i--){
         if(d[i] == 'L'){ 
-          ld[i] = 0; fl = i;
+          ld[i] = 0;
+          // fl = i;
         }
         else if(d[i] == 'R')
           ld[i] = n+1;
