@@ -19,7 +19,7 @@ public:
     }
     
     bool findTarget(TreeNode* root, int k) {
-      // Map Approach
+      // Two Sum Approach with a vector
       vector<int> v;
       inorder(root, v);
       // for(auto i: v) cout<<i<<" ";
