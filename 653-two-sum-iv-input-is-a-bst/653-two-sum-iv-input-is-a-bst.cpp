@@ -13,8 +13,8 @@ class Solution {
 public:
     void inorder(TreeNode *root, vector<int> &v){
       if(!root) return;
-      v.push_back(root->val);
       inorder(root->left, v);
+      v.push_back(root->val);
       inorder(root->right, v);
     }
     
@@ -23,7 +23,7 @@ public:
       vector<int> v;
       inorder(root, v);
       // for(auto i: v) cout<<i<<" ";
-      sort(v.begin(), v.end());
+      // sort(v.begin(), v.end());
       int l = 0, r = v.size() - 1;
       while(l < r){
         if(v[l] == k - v[r]) return true;
