@@ -49,7 +49,7 @@ public:
       int ans = 0, m = g.size(), n = g[0].size();
       for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
-          if(g[i][j] == 0 and dfs(g, i, j)) ans++;
+          if(g[i][j] == 0) ans += dfs(g, i, j);
         }
       }
       return ans;
