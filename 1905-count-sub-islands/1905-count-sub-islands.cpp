@@ -2,7 +2,9 @@ class Solution {
 public:
     void dfs(vector<vector<int>> &p, vector<vector<int>> &q, int r, int c, int &temp){
       if(r < 0 or r == p.size() or c < 0 or c == p[0].size()) return;
-      if(p[r][c] == 0 and q[r][c] == 1) temp = 0;
+      if(p[r][c] == 0 and q[r][c] == 1){
+        temp = 0; return;
+      }
       if(q[r][c] == 0) return;
       q[r][c] = 0;
       dfs(p, q, r+1, c, temp);
