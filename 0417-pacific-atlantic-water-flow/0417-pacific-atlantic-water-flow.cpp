@@ -6,12 +6,12 @@ public:
       if(r < 0 or r >= v.size() or c < 0 or c >= v[0].size()) return;
       if(vis[r][c] == 1 or v[r][c] < ph) return;
       vis[r][c] = 1;
-      // for(int i = 0; i < 4; i++)
-        // dfs(v, vis, r + dx[i], c + dy[i], v[r][c]);
-      dfs(v, vis, r+1, c, v[r][c]);
-      dfs(v, vis, r-1, c, v[r][c]);
-      dfs(v, vis, r, c+1, v[r][c]);
-      dfs(v, vis, r, c-1, v[r][c]);
+      for(int i = 0; i < 4; i++)
+        dfs(v, vis, r + dx[i], c + dy[i], v[r][c]);
+      // dfs(v, vis, r+1, c, v[r][c]);
+      // dfs(v, vis, r-1, c, v[r][c]);
+      // dfs(v, vis, r, c+1, v[r][c]);
+      // dfs(v, vis, r, c-1, v[r][c]);
     }
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& v) {
       int m = v.size(), n = v[0].size();
