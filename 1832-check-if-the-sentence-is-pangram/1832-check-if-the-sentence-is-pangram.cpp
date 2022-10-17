@@ -1,11 +1,17 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
-      vector<int> v(26, 0);
+      // vector<int> v(26, 0);
+      // for(char ch : sentence){
+      //   v[ch - 'a']++;
+      // }
+      // sort(v.begin(), v.end());
+      // return v[0] != 0;
+      
+      set<char> s;
       for(char ch : sentence){
-        v[ch - 'a']++;
+        s.insert(ch);
       }
-      sort(v.begin(), v.end());
-      return v[0] != 0;
+      return s.size() == 26;
     }
 };
