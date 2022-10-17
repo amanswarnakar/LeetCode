@@ -11,7 +11,8 @@ public:
       for(int i = 0; i < 26; i++){
         if(v[i] > 0) cnt++;
       }
-      return cnt == 26;
+      if(cnt == 26) return true;
+      return false;
       
       // set<char> s;
       // for(char ch : sentence){
