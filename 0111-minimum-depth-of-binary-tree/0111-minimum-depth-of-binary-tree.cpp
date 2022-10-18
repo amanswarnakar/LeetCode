@@ -11,20 +11,38 @@
  */
 class Solution {
 public:
-    void traverse(TreeNode *root, int &ans, int temp = 0){
+    void dfs(TreeNode *root, int &ans, int temp = 0){
       temp++;
       if(root->left == nullptr and root->right == nullptr){
         ans = min(ans, temp);
-        // cout<<root->val<<" "<<temp<<" "<<ans<<endl;
         return;
       }
-      if(root->left) traverse(root->left, ans, temp);
-      if(root->right) traverse(root->right, ans, temp);
+      if(root->left) dfs(root->left, ans, temp);
+      if(root->right) dfs(root->right, ans, temp);
     }
     int minDepth(TreeNode* root) {
       if(!root) return 0;
-      int ans = INT_MAX;
-      traverse(root, ans);
+      
+      // DFS
+      // int ans = INT_MAX;
+      // dfs(root, ans);
+      
+      // BFS
+      int ans = 0;
+      queue<TreeNode *> q;
+      q.push(root);
+      while(!q.empty()){
+        int s = q.size();
+        ans++;
+        for(int i = 0; i < s; i++){
+          TreeNode *temp = q.front();
+          q.pop();
+          if(temp->left) q.push(temp->left);
+          if(temp->right) q.push(temp->right);
+          if(temp->left == NULL and temp->right == NULL)  return ans;
+        }
+      }
+      
       return ans;
     }
 };
