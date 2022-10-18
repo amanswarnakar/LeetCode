@@ -11,15 +11,15 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode *root, int &ans, int temp = 0){
-      temp++;
-      if(root->left == nullptr and root->right == nullptr){
-        ans = min(ans, temp);
-        return;
-      }
-      if(root->left) dfs(root->left, ans, temp);
-      if(root->right) dfs(root->right, ans, temp);
-    }
+    // void dfs(TreeNode *root, int &ans, int temp = 0){
+    //   temp++;
+    //   if(root->left == nullptr and root->right == nullptr){
+    //     ans = min(ans, temp);
+    //     return;
+    //   }
+    //   if(root->left) dfs(root->left, ans, temp);
+    //   if(root->right) dfs(root->right, ans, temp);
+    // }
     int minDepth(TreeNode* root) {
       if(!root) return 0;
       
