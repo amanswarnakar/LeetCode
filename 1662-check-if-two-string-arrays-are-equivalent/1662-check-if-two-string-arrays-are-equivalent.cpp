@@ -2,10 +2,10 @@ class Solution {
 public:
     bool arrayStringsAreEqual(vector<string>& a, vector<string>& b) {
       string p = "", q = "";
-      for(string s : a){
+      for(auto s : a){
         p += s;
       }
-      for(string s : b){
+      for(auto s : b){
         q += s;
       }
       return p == q;
