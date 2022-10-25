@@ -1,11 +1,10 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>> &v, vector<bool> &vis, int r){
-      // if(vis[r]) return;
-      vis[r] = true;
-      for(int i = 0; i < v.size(); i++){
-        if(v[r][i] == 1 and !vis[i])
-          dfs(v, vis, i);
+    void dfs(vector<vector<int>> &graph, vector<bool> &vis, int currNode){
+      vis[currNode] = true;
+      for(int i = 0; i < graph.size(); i++){
+        if(graph[currNode][i] == 1 and !vis[i])
+          dfs(graph, vis, i);
       }
     }
   
