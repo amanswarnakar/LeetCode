@@ -20,7 +20,7 @@ public:
       vector<bool> vis(n, false);
       vis[0] = true;
       vector<vector<int>> graph(n), back(n);
-      for(auto con: connections){
+      for(auto &con: connections){
         graph[con[0]].emplace_back(con[1]);
         back[con[1]].emplace_back(con[0]);
       }
