@@ -19,9 +19,7 @@ public:
         for(auto &node: graph[currNode]){
           int newMask = mask | (1 << node);
           if(newMask == all) return dist + 1;
-          if(vis.count({node, newMask}))
-            continue;
-          else {
+          if(vis.find({node, newMask}) == vis.end()){
             // q.emplace(pair<int, pair<int, int>>{node, pair<int, int>{dist + 1, newMask}});
             q.push({node, {dist + 1, newMask}});
             vis.insert({node, newMask});
