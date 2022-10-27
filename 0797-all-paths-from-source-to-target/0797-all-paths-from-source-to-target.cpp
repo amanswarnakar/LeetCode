@@ -1,23 +1,18 @@
 class Solution {
 public:
-    vector<vector<int>> ans;
-    vector<int> temp;
-    int n = 0;
-  
-    void dfs(vector<vector<int>> &graph, int cur){
-      temp.push_back(cur);
-      if(cur == n) ans.push_back(temp);
-      else {
-        for(int node : graph[cur]){
-          dfs(graph, node);
-        }
+    void dfs(vector<vector<int>> &graph, vector<vector<int>> &ans, vector<int> &temp, int cn, int n){
+      temp.emplace_back(cn);
+      if(cn == n) ans.emplace_back(temp);
+      for(auto &node: graph[cn]){
+        dfs(graph, ans, temp, node, n);
       }
       temp.pop_back();
     }
-  
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
-      n = graph.size() - 1;
-      dfs(graph, 0);
+      int n = graph.size() - 1;
+      vector<int> temp;
+      vector<vector<int>> ans;
+      dfs(graph, ans, temp, 0, n);
       return ans;
     }
 };
