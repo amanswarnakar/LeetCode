@@ -1,6 +1,28 @@
 class Solution {
 public:
-    int shiftAndCount(int i, int j, vector<vector<int>> &a, vector<vector<int>> &b){
+    int helper(vector<vector<int>> &a, vector<vector<int>> &b, int r, int c){
+      int res = 0, n = a.size();
+      for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+          if(i + r < 0 or i + r >= n or j + c < 0 or j + c >= n)  continue;
+          if(a[i][j] + b[i + r][j + c] == 2)
+            res++;
+        }
+      }
+      return res;
+    }
+    int largestOverlap(vector<vector<int>>& a, vector<vector<int>>& b) {
+      int n = a.size(), ans = 0;
+      for(int i = - n + 1; i < n; i++){
+        for(int j = - n + 1; j < n; j++){
+          ans = max(ans, helper(a, b, i, j));
+        }
+      }
+      return ans;
+    }
+  
+  
+  /*    int shiftAndCount(int i, int j, vector<vector<int>> &a, vector<vector<int>> &b){
       int lcnt = 0, rcnt = 0, cnt = 0;
       int r = 0;
       for (int x = j; x < a.size(); ++x) {
@@ -35,5 +57,5 @@ public:
         }
       }
       return ans;
-    }
+    }  */
 };
