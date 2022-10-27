@@ -11,9 +11,6 @@ public:
       int n = graph.size();
       vector<bool> vis(n, false);
       dfs(graph, vis, 0);
-      for(int i = 0; i < n; i++){
-        if(!vis[i]) return false;
-      }
-      return true;
+      return accumulate(vis.begin(), vis.end(), 0) == n;
     }
 };
