@@ -1,16 +1,19 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>> &graph, vector<bool> &vis, int currNode){
-      if(vis[currNode]) return;
-      vis[currNode] = true;
-      for(int node: graph[currNode]){
-        dfs(graph, vis, node);
+    void dfs(vector<vector<int>> &graph, vector<bool> &vis, int cn){
+      vis[cn] = true;
+      for(auto &node: graph[cn]){
+        if(!vis[node])
+          dfs(graph, vis, node);
       }
     }
-    bool canVisitAllRooms(vector<vector<int>>& rooms) {
-      int n = rooms.size();
+    bool canVisitAllRooms(vector<vector<int>>& graph) {
+      int n = graph.size();
       vector<bool> vis(n, false);
-      dfs(rooms, vis, 0);
-      return accumulate(vis.begin(), vis.end(), 0) == n;
+      dfs(graph, vis, 0);
+      for(int i = 0; i < n; i++){
+        if(!vis[i]) return false;
+      }
+      return true;
     }
 };
