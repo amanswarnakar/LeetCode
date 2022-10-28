@@ -6,10 +6,10 @@ public:
         for(string &s: strs){
           string temp = s;
           sort(temp.begin(), temp.end());
-          um[temp].push_back(s);
+          um[temp].emplace_back(s);
         }
         for(auto &p: um){
-          ans.push_back(p.second);
+          ans.emplace_back(p.second);
         }
         return ans;
       }
