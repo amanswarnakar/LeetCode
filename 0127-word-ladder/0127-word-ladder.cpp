@@ -4,7 +4,7 @@ public:
     set<string> vis(words.begin(), words.end());
     queue<pair<string, int>> q;
     q.emplace(start, 1);
-    // vis.erase(start);
+    vis.erase(start);
     while(!q.empty()){
       auto top = q.front();
       q.pop();
