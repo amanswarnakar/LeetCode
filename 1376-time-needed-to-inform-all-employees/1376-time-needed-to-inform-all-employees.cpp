@@ -1,8 +1,8 @@
 class Solution {
 public:
-    int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& time) {
-      // BFS
+    // BFS
 
+    int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& time) {
       int ans = 0;
       vector<vector<int>> graph(n);
       queue<pair<int, int>> q;
@@ -22,7 +22,7 @@ public:
     }
   
   
-  // DFS
+    // DFS
   
 //     int dfs(vector<vector<int>> &graph, int curManager, vector<int> &time){
 //       int temp = 0;
