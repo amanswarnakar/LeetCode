@@ -13,6 +13,7 @@ public:
       while(!q.empty()){
         auto front = q.front();
         int currNode = front[0], dist = front[1], color = front[2];
+        cout<<currNode<<" "<<dist<<" "<<color<<endl;
         q.pop();
         if(ans[currNode] == -1)  ans[currNode] = dist;
         for(auto &node : graph[currNode]){
