@@ -4,7 +4,7 @@ public:
       int dx[4] = { -1, 0, 0, 1 }, dy[4] = { 0, -1, 1, 0 };
       int m = grid.size(), n = grid[0].size(), ans = 0;
       vector<vector<int>> remains(m, vector<int>(n, INT_MIN));
-      queue<array<int, 3>> q;
+      queue<vector<int>> q;
       q.push({0, 0, k});
       remains[0][0] = k;
       while (!q.empty()) {
