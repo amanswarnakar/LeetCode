@@ -4,8 +4,8 @@ public:
       int dx[4] = { -1, 0, 0, 1 }, dy[4] = { 0, -1, 1, 0 };
       int m = grid.size(), n = grid[0].size(), ans = 0;
       vector<vector<int>> remains(m, vector<int>(n, INT_MIN));
-      queue<vector<int>> q;
-      q.emplace(vector<int>{0, 0, k});
+      queue<array<int, 3>> q;
+      q.push({0, 0, k});
       remains[0][0] = k;
       while (!q.empty()) {
         for (int it = q.size(); it > 0; it--) {
@@ -17,7 +17,7 @@ public:
             if(min(x, y) >= 0 and x < m and y < n){
               int remain = top[2] - grid[x][y];
               if(remain >= 0 && remains[x][y] < remain) {
-                q.emplace(vector<int>{x, y, remain});
+                q.push({x, y, remain});
                 remains[x][y] = remain;
               }
             }
