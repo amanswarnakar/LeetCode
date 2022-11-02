@@ -3,9 +3,9 @@ public:
     bool isBipartite(vector<vector<int>>& graph) {
       int n = graph.size();
       vector<int> vis(n, 0);
+      queue<vector<int>> q;
       for(int i = 0; i < n; i++){
         if(!vis[i]){
-          queue<vector<int>> q;
           q.push({i, 1});
           while(!q.empty()){
             auto top = q.front(); q.pop();
