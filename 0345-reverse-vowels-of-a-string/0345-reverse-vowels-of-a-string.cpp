@@ -6,9 +6,9 @@ public:
     string reverseVowels(string s) {
       int l = 0, r = s.size();
       while(l < r){
-        if(!isVowel(s[l])) l++;
-        if(!isVowel(s[r])) r--;
-        if(isVowel(s[l]) and isVowel(s[r])){
+        while(l < s.size() and !isVowel(s[l])) l++;
+        while(r >= 0 and !isVowel(s[r])) r--;
+        if(isVowel(s[l]) and isVowel(s[r]) and l < r){
           swap(s[l], s[r]);
           l++; r--;
         }
