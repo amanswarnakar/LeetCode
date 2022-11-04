@@ -19,7 +19,7 @@ public:
         if(canGoBackwards and backward >= 0){
           q.push({backward, {ans + 1, false}});
         }
-        if(forward <= 2000 + a + b){    // 1 <= a, b, forbidden[i] <= 2000
+        if(forward <= 6000){    // 1 <= a, b, forbidden[i] <= 2000
           // We can at max come backwards from (2000 + a + b) position to x position
           q.push({forward, {ans + 1, true}});
         }
