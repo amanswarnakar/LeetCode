@@ -2,9 +2,8 @@ class Solution {
 public:
     bool isVowel(char ch){
       string check = "aeiouAEIOU";
-      for(int i = 0; i < 10; i++){
-        if(ch == check[i]) return true;
-      }
+      for(auto &c: check)
+        if(ch == c) return true;
       return false;
     }
     string reverseVowels(string s) {
