@@ -25,26 +25,5 @@ public:
         }
       }
       return false;
-//       int step = 1, dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};
-//       while(q.size()){
-//         for(auto i = 0; i < q.size(); i++){
-//           auto top = q.front(); q.pop();
-//           int r = top.first, c = top.second;
-//           cout<<"r "<<r<<" c "<<c<<" "<<v[r][c]<<" "<<word[step]<<endl;
-          
-//           if(word[w - 1] == v[r][c] and step == w - 1)
-//             return true;
-//           for(int j = 0; j < 4; j++){
-//             int x = r + dx[j], y = c + dy[j];
-//             if(min(x, y) >= 0 and x < m and y < n){
-//               if(v[x][y] == word[step]){
-//                 q.emplace(x, y);
-//               }
-//             }
-//           }          
-//         }
-//         step++;
-//       }
-//      return false;
     }
 };
