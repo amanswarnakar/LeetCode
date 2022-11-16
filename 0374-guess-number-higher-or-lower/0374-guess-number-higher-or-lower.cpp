@@ -14,7 +14,7 @@ public:
       while(l <= r){
         int mid = l + (r - l) / 2;
         int temp = guess(mid);
-        if(!temp) return mid;
+        if(temp == 0) return mid;
         else if(temp < 0) r = mid - 1;
         else l = mid + 1;
       }
