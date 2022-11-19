@@ -1,27 +1,41 @@
 class Solution {
 public:
-    static vector<vector<int>> outerTrees(vector<vector<int>>& points) {
-      sort(begin(points), end(points));
-      const int n = size(points);
-      vector<vector<int>> ans;
-      ans.reserve(n);
-      for (int i = 0; i < n; ++i) {
-        while (size(ans) > 1 && helper(ans[size(ans) - 2], ans.back(), points[i]) < 0) 
-          ans.pop_back();
-        ans.push_back(points[i]);
-      }
-      if (size(ans) == n) return ans;
-
-      for (int i = n - 2; i >= 0; --i) {
-        while (size(ans) > 1 && helper(ans[size(ans) - 2], ans.back(), points[i]) < 0) 
-          ans.pop_back();
-        ans.push_back(points[i]);
-      }
-      ans.pop_back();
-      return ans;
+    int helper(vector<int> &a, vector<int> &b, vector<int> &c){
+      return (b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1]);
     }
-
-    static int helper(const vector<int>& a, const vector<int>& b, const vector<int>& c) {
-      return (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+  
+    vector<vector<int>> outerTrees(vector<vector<int>>& t) {
+      if(t.size() <= 3) return t;
+      int n = t.size();
+      sort(t.begin(), t.end());
+      
+      vector<vector<int>> up;
+      up.emplace_back(t[0]);
+      up.emplace_back(t[1]);
+      for(int i = 2; i < n; i++){
+        int s = up.size();
+        while(s >= 2 and helper(up[s - 2], up[s - 1], t[i]) > 0){
+          up.pop_back(); s--;
+        }
+        up.emplace_back(t[i]);
+      }
+      
+      vector<vector<int>> down;
+      down.emplace_back(t[n - 1]);
+      down.emplace_back(t[n - 2]);
+      for(int i = n - 3; i >= 0; i--){
+        int s = down.size();
+        while(s >= 2 and helper(down[s - 2], down[s - 1], t[i]) > 0){
+          down.pop_back(); s--;
+        }
+        down.emplace_back(t[i]);
+      }
+      
+      for(auto &i: down){
+        up.emplace_back(i);
+      }
+      sort(up.begin(), up.end());
+      up.erase(unique(up.begin(), up.end()), up.end());
+      return up;
     }
 };
