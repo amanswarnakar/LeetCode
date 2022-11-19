@@ -1,9 +1,7 @@
 class Solution {
 public:
     static vector<vector<int>> outerTrees(vector<vector<int>>& points) {
-      sort(begin(points), end(points), [](const vector<int>& a, const vector<int>& b) {
-        return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]);
-      });
+      sort(begin(points), end(points));
       const int n = size(points);
       vector<vector<int>> ans;
       ans.reserve(n);
