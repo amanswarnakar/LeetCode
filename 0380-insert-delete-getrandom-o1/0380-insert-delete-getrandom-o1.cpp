@@ -2,7 +2,7 @@ class RandomizedSet {
 public:
     unordered_set<int> st;
     RandomizedSet() {
-      
+      st.clear();
     }
     
     bool insert(int val) {
