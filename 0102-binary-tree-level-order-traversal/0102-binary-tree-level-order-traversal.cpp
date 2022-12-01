@@ -16,7 +16,6 @@ public:
       vector<vector<int>> ans;
       queue<TreeNode *> q;
       q.emplace(root);
-      int level = 0;
       while(!q.empty()){
         int sz = q.size();
         vector<int> temp;
@@ -27,7 +26,6 @@ public:
           if(node->right) q.emplace(node->right);
         }
         ans.emplace_back(temp);
-        level++;
       }
       return ans;
     }
