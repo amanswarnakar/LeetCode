@@ -14,9 +14,10 @@ public:
     TreeNode* invertTree(TreeNode* root) {
       if(!root or (!root->left and !root->right)) return root;
       else {
-        TreeNode *r = root->right;
-        root->right = root->left;
-        root->left = r;
+        // TreeNode *r = root->right;
+        // root->right = root->left;
+        // root->left = r;
+        swap(root->right, root->left);
       }
       invertTree(root->right);
       invertTree(root->left);
