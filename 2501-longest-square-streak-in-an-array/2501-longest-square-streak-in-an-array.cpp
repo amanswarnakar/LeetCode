@@ -5,7 +5,7 @@ public:
       map<int, int> mp;
       for(auto &i: v) mp[i]++;
       vector<pair<int, int>> ans(n);
-      int maxele = *max_element(v.begin(), v.end());
+      double maxele = *max_element(v.begin(), v.end());
       maxele = sqrt(maxele);
       for(auto &p: mp){
         ans[idx].first = p.first;
