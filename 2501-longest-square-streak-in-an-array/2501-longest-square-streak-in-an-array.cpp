@@ -6,11 +6,12 @@ public:
       for(auto &i: v) mp[i]++;
       vector<pair<int, int>> ans(n);
       int maxele = *max_element(v.begin(), v.end());
+      maxele = sqrt(maxele);
       for(auto &p: mp){
         ans[idx].first = p.first;
         ans[idx].second = 1;
         long long t = p.first;
-        while(t <= sqrt(maxele) and mp.find(t * t) != mp.end()){
+        while(t <= maxele and mp.find(t * t) != mp.end()){
           t = t * t;
           ans[idx].second++;
         }
