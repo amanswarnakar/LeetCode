@@ -7,10 +7,6 @@ public:
           v[i][j] += min(v[i + 1][j], v[i + 1][j + 1]);
         }
       }
-      // for(auto i: v){
-        // for(auto j: i) cout<<j<<" ";
-        // cout<<endl; 
-      // }
       return v[0][0];
     }
 };
