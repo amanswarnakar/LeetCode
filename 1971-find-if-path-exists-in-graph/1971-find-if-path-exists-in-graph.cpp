@@ -16,7 +16,10 @@ public:
           vis[node] = true;
           if(node == t) return true;
           for(auto &adj: graph[node]){
-            if(!vis[adj]) q.emplace(adj);
+            if(!vis[adj]){
+              q.emplace(adj);
+              vis[adj] = true;
+            }
           }
         }
       }
