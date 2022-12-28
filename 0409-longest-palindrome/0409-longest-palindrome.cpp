@@ -5,7 +5,7 @@ public:
       for(auto &ch: s){
         freq[ch - 'A']++;
       }
-      int ans = 0, cnt = 0;
+      int cnt = 0;
       for(auto &i: freq){
         if(i % 2) cnt++;
       }
