@@ -2,7 +2,7 @@ class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& v) {
       int m = v.size(), n = v[0].size();
-      if(v[0][0] or v[m - 1][n - 1]) return 0;
+      // if(v[0][0] or v[m - 1][n - 1]) return 0;
       vector<vector<long long int>> dp(m, vector<long long int>(n, 0));
       for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
