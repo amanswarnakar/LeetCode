@@ -4,7 +4,7 @@ public:
       int n = v.size(), l = 0, r = n - 1;
       sort(v.begin(), v.end());
       while(l < r){
-        if(v[r - 1] - v[l] != v[r] - v[l + 1]) return -1;
+        if(v[r] + v[l] != v[r - 1] + v[l + 1]) return -1;
         l++; r--;
       }
       l = 0; r = n - 1;
