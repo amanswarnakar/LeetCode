@@ -3,15 +3,29 @@ public:
     int totalFruit(vector<int>& v) {
       int l = 0, r = 0, n = v.size();
       unordered_map<int, int> um;
+      int ans = 0;
       while(r < n){
         um[v[r++]]++;
-        if(um.size() > 2){
+        while(um.size() > 2){
           um[v[l]]--;
           if(um[v[l]] == 0) um.erase(v[l]);
           l++;
         }
+        ans = max(ans, r - l);
       }
-      return r - l;
+      return ans;
+      
+      // int l = 0, r = 0, n = v.size();
+      // unordered_map<int, int> um;
+      // while(r < n){
+      //   um[v[r++]]++;
+      //   if(um.size() > 2){
+      //     um[v[l]]--;
+      //     if(um[v[l]] == 0) um.erase(v[l]);
+      //     l++;
+      //   }
+      // }
+      // return r - l;
       
       // TC - O(N^2) TLE
       
