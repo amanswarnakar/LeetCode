@@ -48,23 +48,22 @@ public:
                 t = top;
                 break;
             }
-            if(top->left) q.push(top->left);
-            if(top->right) q.push(top->right);
+            if(top->left) q.emplace(top->left);
+            if(top->right) q.emplace(top->right);
 
         }
         if(!t) return -1;
         queue<pair<Node *, int>> qq;
-        if(t->left) qq.push({t->left, -1});
-        if(t->right) qq.push({t->right, 1});
+        qq.emplace(make_pair(t, 0));
         while(!qq.empty()){
             auto top = qq.front(); qq.pop();
             Node *a = top.first;
             int b = top.second;
             if(b == 0) ans += a->data;
-            if(a->left) qq.push({a->left, b - 1});
-            if(a->right) qq.push({a->right, b + 1});
+            if(a->left) qq.emplace(make_pair(a->left, b - 1));
+            if(a->right) qq.emplace(make_pair(a->right, b + 1));
         }
-        return ans;
+        return ans - target;
     }
 };
 
