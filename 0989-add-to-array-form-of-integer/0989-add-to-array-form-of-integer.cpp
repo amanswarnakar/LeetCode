@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> addToArrayForm(vector<int>& v, int k) {
       reverse(v.begin(), v.end());
-      int carry = 0, i = 0;
+      int i = 0;
       while(i < v.size()){
         v[i] += k;
         k = v[i] / 10;
