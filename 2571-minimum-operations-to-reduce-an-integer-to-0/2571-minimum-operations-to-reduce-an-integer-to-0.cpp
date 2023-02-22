@@ -7,8 +7,8 @@ public:
       while(x * 2 < n) x *= 2;
       y = x * 2 - n;
       x = n - x;
-      int pick = minOperations(x);
-      int notPick = minOperations(y);
-      return min(pick, notPick) + 1;
+      int low = minOperations(x);
+      int high = minOperations(y);
+      return min(low, high) + 1;
     }
 };
