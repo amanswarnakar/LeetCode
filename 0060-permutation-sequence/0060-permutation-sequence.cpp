@@ -25,7 +25,6 @@ public:
       vector<bool> vis(n, false);
       int cnt = 0;
       recur(s, temp, vis, ans, cnt, k);
-      // sort(ans.begin(), ans.end());
       return ans.back();
     }
 };
