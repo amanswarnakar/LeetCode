@@ -1,30 +1,32 @@
 class Solution {
 public:
-    int minJumps(vector<int>& arr) {
-      int n = arr.size();
+    int minJumps(vector<int>& v) {
+      int n = v.size(), ans = 0;
       unordered_map<int, vector<int>> um;
-      for (int i = 0; i < n; i++)
-        um[arr[i]].push_back(i);
-      vector<bool> vis(n); vis[0] = true;
-      queue<int> q; q.push(0);
-      int ans = 0;
-      while (!q.empty()) {
-        for (int size = q.size(); size > 0; --size) {
-          int i = q.front(); q.pop();
-          if (i == n - 1) return ans; 
-          vector<int>& temp = um[arr[i]];
-          temp.push_back(i - 1); 
-          temp.push_back(i + 1);
-          for (int j : temp) {
-            if (j >= 0 && j < n && !vis[j]) {
-              vis[j] = true;
-              q.push(j);
+      for(int i = 0; i < n; i++)
+        um[v[i]].emplace_back(i);
+      vector<bool> vis(n, false);
+      vis[0] = true;
+      queue<int> q;
+      q.emplace(0);
+      while(!q.empty()){
+        int sz = q.size();
+        for(int k = 0; k < sz; k++){
+          auto top = q.front(); q.pop();
+          if(top == n - 1) return ans;
+          vector<int> &temp = um[v[top]];
+          temp.emplace_back(top - 1);
+          temp.emplace_back(top + 1);
+          for(auto &i: temp){
+            if(i >= 0 and i < n and !vis[i]){
+              vis[i] = true;
+              q.emplace(i);
             }
           }
-          temp.clear(); 
+          temp.clear();
         }
         ans++;
       }
-      return 0; 
+      return 0;
     }
 };
