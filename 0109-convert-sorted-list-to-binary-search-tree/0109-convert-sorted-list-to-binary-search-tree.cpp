@@ -21,6 +21,33 @@
  */
 class Solution {
 public:
+    ListNode *node;
+    TreeNode *helper(int l, int r){
+      if(l > r) return NULL;
+      TreeNode *left, *right;
+      int mid = l + (r - l) / 2;
+      left = helper(l, mid - 1);
+      
+      TreeNode *root = new TreeNode(node->val);
+      root->left = left;
+      node = node->next;
+      
+      right = helper(mid + 1, r);
+      root->right = right;
+      
+      return root;
+    }
+    TreeNode* sortedListToBST(ListNode* head) {
+      node = head;
+      int n = 0;
+      ListNode *temp = head;
+      while(temp){
+        temp = temp->next;
+        n++;
+      }
+      return helper(0, n - 1);
+    }
+  /*
     TreeNode *helper(vector<int> &v, int l, int r){
       if(l > r) return NULL;
       TreeNode *root = new TreeNode(0);
@@ -39,4 +66,5 @@ public:
       TreeNode *root = helper(v, 0, v.size() - 1);
       return root;
     }
+  */
 };
