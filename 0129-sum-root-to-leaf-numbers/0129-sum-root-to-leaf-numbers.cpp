@@ -11,23 +11,23 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode *node, vector<int> &v, int &num){
+    void dfs(TreeNode *node, int &num, int &ans){
       num = num * 10 + node->val;
       if(!node->left and !node->right) {
-        v.emplace_back(num);
+        ans += num;
         num /= 10;
         return;
       }
       if(node->left)
-        dfs(node->left, v, num);
+        dfs(node->left, num, ans);
       if(node->right)
-        dfs(node->right, v, num);
+        dfs(node->right, num, ans);
       num /= 10;  
     }
     int sumNumbers(TreeNode* root) {
       vector<int> v;
-      int num = 0;
-      dfs(root, v, num);
-      return accumulate(v.begin(), v.end(), 0);
+      int num = 0, ans = 0;
+      dfs(root, num, ans);
+      return ans;
     }
 };
