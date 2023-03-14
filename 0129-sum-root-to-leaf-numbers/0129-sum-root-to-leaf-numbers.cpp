@@ -25,7 +25,6 @@ public:
       num /= 10;  
     }
     int sumNumbers(TreeNode* root) {
-      vector<int> v;
       int num = 0, ans = 0;
       dfs(root, num, ans);
       return ans;
