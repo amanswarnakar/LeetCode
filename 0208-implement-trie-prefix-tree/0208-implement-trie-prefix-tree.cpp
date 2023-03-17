@@ -1,3 +1,4 @@
+/*
 class TrieNode {
 public:
   bool isLeaf;
@@ -46,6 +47,30 @@ public:
         node = node->children[idx];
       }
       return true;
+    }
+};
+
+*/
+class Trie {
+public:
+    set<string> st;
+    Trie() {
+      
+    }
+    
+    void insert(string word) {
+      st.insert(word);  
+    }
+    
+    bool search(string word) {
+      return st.count(word);
+    }
+    
+    bool startsWith(string prefix) {
+      for(auto &i: st){
+        if(i.find(prefix, 0) == 0) return true;
+      }
+      return false;
     }
 };
 
