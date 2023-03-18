@@ -20,7 +20,7 @@ public:
       } 
       else {
         r = curr + 1;
-        // ds.resize(curr);
+        ds.resize(curr + 1);
         // ds.emplace_back(url);
         ds[curr] = url;
       }
