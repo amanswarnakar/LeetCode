@@ -13,17 +13,16 @@ public:
     }
     
     void visit(string url) {
-      if(curr == ds.size() - 1){
+      curr++;
+      if(curr == ds.size()){
         ds.emplace_back(url);
-        curr++;
         r = ds.size();
       } 
       else {
-        curr++;
         r = curr + 1;
-        ds.resize(curr);
-        ds.emplace_back(url);
-        // ds[curr] = url;
+        // ds.resize(curr);
+        // ds.emplace_back(url);
+        ds[curr] = url;
       }
             
       // cout<<curr<<" "<<r<<endl;
