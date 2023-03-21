@@ -1,24 +1,24 @@
 class Solution {
 public:
-    void recur(int i, int t, vector<int> &v, vector<int> &temp, vector<vector<int>> &ans){
+    void recur(int idx, vector<int> &v, vector<int> &temp, vector<vector<int>> &ans, int t){
       if(t == 0){
-        sort(temp.begin(), temp.end());
+        sort(begin(temp), end(temp));
         ans.emplace_back(temp);
         return;
       }
-      while(i < v.size() and t - v[i] >= 0){
-        temp.emplace_back(v[i]);
-        recur(i, t - v[i], v, temp, ans);
-        i++;
+      while(idx < v.size() and t - v[idx] >= 0){
+        temp.emplace_back(v[idx]);
+        recur(idx, v, temp, ans, t - v[idx]);
+        idx++;
         temp.pop_back();
       }
     }
-    vector<vector<int>> combinationSum(vector<int>& v, int target) {
+    vector<vector<int>> combinationSum(vector<int>& v, int t) {
       vector<vector<int>> ans;
       vector<int> temp;
-      sort(v.begin(), v.end());
-      v.erase(unique(v.begin(),v.end()),v.end());
-      recur(0, target, v, temp, ans);
+      sort(begin(v), end(v));
+      v.erase(unique(begin(v), end(v)), end(v));
+      recur(0, v, temp, ans, t);
       return ans;
     }
 };
