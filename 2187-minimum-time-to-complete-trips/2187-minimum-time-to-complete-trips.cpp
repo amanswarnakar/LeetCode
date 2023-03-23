@@ -4,8 +4,9 @@ public:
       long long res = 0;
       for(int i = 0; i < v.size(); i++){
         res += time / v[i];
+        if(res >= t) return true;
       }
-      return res >= t;
+      return false;
     }
     long long minimumTime(vector<int>& v, int t) {
       long long int l = 1, r = 1LL * *min_element(begin(v), end(v)) * t;
