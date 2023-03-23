@@ -4,8 +4,9 @@ public:
       long long int res = 0;
       for(auto &i: v){
         res += (i / mid) + (i % mid != 0);
+        if(res > h) return false;
       }
-      return res <= h;
+      return true;
     }
     int minEatingSpeed(vector<int>& v, int h) {
       int l = 1, r = *max_element(begin(v), end(v));
