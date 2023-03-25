@@ -1,18 +1,27 @@
 class Solution {
 public:
-    int shipWithinDays(vector<int>& v, int days) {
-      int n = v.size(), l = 0, r = accumulate(v.begin(), v.end(), 0);
-      for(auto &i: v) l = max(l, i);
-      while(l < r){
-        int mid = l + (r - l) / 2, cnt = 1, sum = 0;
-        for(int i = 0; i < n and cnt <= days; sum += v[i++]){
-          if(sum + v[i] > mid){
-            cnt++; sum = 0;
-          }
-        }
-        if(cnt > days) l = mid + 1;
-        else r = mid;
+  bool isPossible(vector<int> &v, int mid, int days){
+    int n = v.size(), sum = 0, res = 1;
+    for(int i = 0; i < n; i++){
+      sum += v[i];
+      if(sum > mid){
+        res++; sum = v[i];
       }
-      return l;
+      if(res > days) return false;
     }
+    return true;
+  }
+  int shipWithinDays(vector<int>& v, int days) {
+    int n = v.size(), l = 0, r = 0;
+    for(auto &i: v){
+      r += i;
+      l = max(l, i);
+    }
+    while(l < r){
+      int mid = l + (r - l) / 2;
+      if(isPossible(v, mid, days)) r = mid;
+      else l = mid + 1;
+    }
+    return l;
+  }
 };
