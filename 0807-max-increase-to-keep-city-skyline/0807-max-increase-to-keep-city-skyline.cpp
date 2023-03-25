@@ -6,10 +6,6 @@ public:
       for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
           mxx[i] = max(mxx[i], grid[i][j]);
-        }
-      }
-      for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
           mxy[i] = max(mxy[i], grid[j][i]);
         }
       }
