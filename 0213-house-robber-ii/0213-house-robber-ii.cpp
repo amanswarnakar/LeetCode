@@ -24,15 +24,16 @@ public:
     int rob(vector<int>& v) {
       int n = v.size();
       if(n <= 2) return *max_element(v.begin(), v.end());
-      vector<int> v1, v2, dp(n - 1, -1);
+      vector<int> v1, v2;
       for(int i = 0; i < n; i++){
         if(i != 0) v1.emplace_back(v[i]);
         if(i != n - 1) v2.emplace_back(v[i]);
       }
       return max(helper(v1), helper(v2));
       
+      // vector<int> dp(n - 1, -1);
       // int x = recur(n - 2, v1, n - 1, dp);
-      // dp.clear();
+      // for(auto &i: dp) i = -1;
       // int y = recur(n - 2, v2, n - 1, dp);
       // return max(x, y);
     }
