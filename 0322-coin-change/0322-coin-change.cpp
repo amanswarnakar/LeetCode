@@ -2,7 +2,6 @@ class Solution {
 public:
     int coinChange(vector<int>& v, int t) {
       int n = v.size();
-      // vector<vector<int>> dp(n, vector<int>(t + 1, 0));
       vector<int> curr(t + 1, 0), prev(t + 1, 0);
       for(int i = 0; i < t + 1; i++){
         if(i % v[0] == 0) prev[i] = i / v[0];
