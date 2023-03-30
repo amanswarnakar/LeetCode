@@ -19,4 +19,22 @@ public:
       int n = s1.size();
       return solve(s1, s2, n);
     }
+  
+  /*
+    bool isScramble(string s1, string s2) {
+      // TLE
+      
+      if(s1 == s2) return true;
+      int n = s1.size();
+      vector<int> count(26, 0);
+      for(auto &i: s1) count[i - 'a']++;
+      for(auto &i: s2) count[i - 'a']--;
+      for(auto &i: count) if(i != 0) return false;
+      for(int i = 1; i < n; i++){
+        if(isScramble(s1.substr(0, i), s2.substr(0, i)) and isScramble(s1.substr(i), s2.substr(i))) return true;
+        if(isScramble(s1.substr(0, i), s2.substr(n - i)) and isScramble(s1.substr(i), s2.substr(0, n - i))) return true;
+      }
+      return false;
+    }
+  */
 };
