@@ -1,14 +1,28 @@
 class Solution {
 public:
     string removeStars(string s) {
-      // String Solution
-      string ans = "";
-      for(auto &i: s){
-        if(i == '*') ans.pop_back();
-        else ans.push_back(i);
+      // Two Pointer Solution
+      
+      int i = 0, j = 0, n = s.size();
+      for(int i = 0; i < n; i++){
+        if(s[i] == '*') j--;
+        else s[j++] = s[i];
       }
-      return ans;
-        
+      s.resize(j);
+      return s;
+      
+      
+      
+      // String Solution
+      
+      // string ans = "";
+      // for(auto &i: s){
+      //   if(i == '*') ans.pop_back();
+      //   else ans.push_back(i);
+      // }
+      // return ans;
+      
+      
       // Stack Solution
       
       // stack<char> st;
