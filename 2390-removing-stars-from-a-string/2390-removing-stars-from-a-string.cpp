@@ -8,9 +8,8 @@ public:
         if(s[i] == '*') j--;
         else s[j++] = s[i];
       }
-      s.resize(j);
-      return s;
-      
+      // s.resize(j);
+      return s.substr(0, j);
       
       
       // String Solution
