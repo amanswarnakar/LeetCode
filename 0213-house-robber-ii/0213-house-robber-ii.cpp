@@ -1,16 +1,34 @@
 class Solution {
 public:
     int solve(vector<int> &v){
+      // Space Optimisation
+      
       int n = v.size();
-      vector<int> dp(n, -1);
-      dp[0] = v[0];
+      // vector<int> dp(n, -1);
+      int p1 = v[0], p2 = 0, curr = 0;
       for(int i = 1; i < n; i++){
         int pick = v[i];
-        if(i > 1) pick += dp[i - 2];
-        int notPick = dp[i - 1];
-        dp[i] = max(pick, notPick);
+        if(i > 1) pick += p2;
+        int notPick = p1;
+        p2 = p1;
+        curr = max(pick, notPick);
+        p1 = curr;
       }
-      return dp[n - 1];
+      return p1;
+      
+      
+      // Tabulation
+      
+      // int n = v.size();
+      // vector<int> dp(n, -1);
+      // dp[0] = v[0];
+      // for(int i = 1; i < n; i++){
+      //   int pick = v[i];
+      //   if(i > 1) pick += dp[i - 2];
+      //   int notPick = dp[i - 1];
+      //   dp[i] = max(pick, notPick);
+      // }
+      // return dp[n - 1];
     }
   
     int rob(vector<int>& v) {
