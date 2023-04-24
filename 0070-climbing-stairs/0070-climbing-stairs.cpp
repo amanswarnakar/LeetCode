@@ -1,12 +1,23 @@
 class Solution {
 public:
     int climbStairs(int n) {
-      vector<int> dp(n + 1, 0);
-      dp[0] = 1;
-      dp[1] = 1;
-      for(int i = 2; i <= n; i++){
-        dp[i] = dp[i-1] + dp[i-2];
+      int p1 = 1, p2 = 0;
+      for(int i = 0; i < n; i++){
+        int curr = p1 + p2;
+        p2 = p1;
+        p1 = curr;
       }
-      return dp[n];
+      return p1;
     }
+  
+  /*
+    int solve(int n){
+      if(n == 0) return 1;
+      if(n < 0) return 0;
+      return solve(n - 1) + solve(n - 2);
+    }
+    int climbStairs(int n) {
+      return solve(n);
+    }
+  */
 };
