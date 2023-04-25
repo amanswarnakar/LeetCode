@@ -1,29 +1,19 @@
 class Solution {
 public:
-    int uniquePathsWithObstacles(vector<vector<int>>& v) {
-      int m = v.size(), n = v[0].size();
-      if(v[0][0] or v[m - 1][n - 1]) return 0;
-      vector<vector<long long int>> dp(m, vector<long long int>(n, 0));
-      for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
-          if(v[i][j]) v[i][j] = 0;
-          else v[i][j] = 1;
-        }
-      }
-      for(int i = m - 1; i >= 0; i--){
-        if(v[i][n - 1]) dp[i][n - 1] = 1;
-        else break;
-      }
-      for(int i = n - 1; i >= 0; i--){
-        if(v[m - 1][i]) dp[m - 1][i] = 1;
-        else break;
-      }
-      for(int i = m - 2; i >= 0; i--){
-        for(int j = n - 2; j >= 0; j--){
-          dp[i][j] = dp[i + 1][j] * v[i + 1][j] + dp[i][j + 1] * v[i][j + 1];
-          dp[i][j] *= v[i][j];
-        }
-      }
-      return dp[0][0];
+    int solve(int r, int c, vector<vector<int>> &g, vector<vector<int>> &dp){
+      if(r < 0 or c < 0 or g[r][c] == 1) return INT_MIN;
+      if(r == 0 and c == 0) return 1;
+      if(dp[r][c] != -1) return dp[r][c];
+      int top = solve(r - 1, c, g, dp);
+      int left = solve(r, c - 1, g, dp);
+      if(top < 0) return dp[r][c] = left < 0 ? 0 : left;
+      if(left < 0) return dp[r][c] = top < 0 ? 0 : top;
+      return dp[r][c] = top + left;
+    }
+    int uniquePathsWithObstacles(vector<vector<int>>& g) {
+      int m = g.size(), n = g[0].size();
+      vector dp(m, vector<int>(n, -1));
+      int ans = solve(m - 1, n - 1, g, dp);
+      return ans < 0 ? 0 : ans;
     }
 };
