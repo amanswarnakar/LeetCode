@@ -3,7 +3,8 @@ public:
     int minFallingPathSum(vector<vector<int>>& v) {
       int m = v.size(), n = v[0].size(), ans = 0;
       vector<int> prev(n, 0), curr(n, 0);
-      for(int i = 0; i < n; i++) prev[i] = v[m - 1][i];
+      for(int i = 0; i < n; i++) 
+        prev[i] = v[m - 1][i];
       for(int i = m - 2; i >= 0; i--){
         for(int j = 0; j < n; j++){
           int left = 1e9, down = prev[j], right = 1e9;
@@ -13,8 +14,6 @@ public:
         }
         prev = curr;
       }
-      // for(int &i: dp[0]) ans = min(ans, i);
-      // return ans;
       return *min_element(prev.begin(), prev.end());
     }
   
