@@ -2,7 +2,6 @@ class Solution {
 public:
     int minimumTotal(vector<vector<int>>& v) {
       int n = v.size();
-      vector<vector<int>> dp(n, vector<int>(n, 1e9));
       vector<int> prev(n, 0);
       for(int i = n - 1; i >= 0; i--){
         vector<int> curr(n, 0);
