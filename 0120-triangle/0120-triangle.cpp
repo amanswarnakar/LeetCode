@@ -3,6 +3,27 @@ public:
     int minimumTotal(vector<vector<int>>& v) {
       int n = v.size();
       vector<vector<int>> dp(n, vector<int>(n, 1e9));
+      vector<int> prev(n, 0);
+      for(int i = n - 1; i >= 0; i--){
+        vector<int> curr(n, 0);
+        for(int j = 0; j < i + 1; j++){
+          if(i == n - 1) curr[j] = v[i][j];
+          else {
+            int left = prev[j], right = prev[j + 1];
+            curr[j] = v[i][j] + min(left, right);
+          }
+        }
+        prev = curr;
+      }
+      return prev[0];
+    }
+  
+  /*
+    // Tabulation
+  
+    int minimumTotal(vector<vector<int>>& v) {
+      int n = v.size();
+      vector<vector<int>> dp(n, vector<int>(n, 1e9));
       for(int i = n - 1; i >= 0; i--){
         for(int j = 0; j < i + 1; j++){
           if(i == n - 1) dp[i][j] = v[i][j];
@@ -14,6 +35,7 @@ public:
       }
       return dp[0][0];
     }
+  */
   
   /*
   // Better Memoization (Top Down Approach)
