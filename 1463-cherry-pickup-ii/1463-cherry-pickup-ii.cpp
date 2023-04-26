@@ -1,15 +1,14 @@
 class Solution {
 public:
-    vector<int> dx = {-1, 0, 1};
     int solve(int c1, int c2, int r, vector<vector<int>> &g, vector<vector<vector<int>>> &dp){
       if(min(c1, c2) < 0 or max(c1, c2) == g[0].size()) return 0;
       if(r == g.size() - 1)
         return c1 == c2 ? g[r][c1] : g[r][c1] + g[r][c2];
       if(dp[r][c1][c2] != -1) return dp[r][c1][c2];
       int temp = 0;
-      for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-          temp = max(temp, solve(c1 + dx[i], c2 + dx[j], r + 1, g, dp));
+      for(int i = -1; i < 2; i++){
+        for(int j = -1; j < 2; j++){
+          temp = max(temp, solve(c1 + i, c2 + j, r + 1, g, dp));
         }
       }
       int res = c1 == c2 ? g[r][c1] + temp : g[r][c1] + g[r][c2] + temp;
