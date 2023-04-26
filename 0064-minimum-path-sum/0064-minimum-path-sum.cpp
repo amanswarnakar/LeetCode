@@ -1,5 +1,27 @@
 class Solution {
 public:
+  // Tabulation
+  
+    int minPathSum(vector<vector<int>>& g) {
+      int m = g.size(), n = g[0].size();
+      vector dp(m, vector<int>(n, 1e9));
+      for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
+          if(i == 0 and j == 0) dp[i][j] = g[i][j];
+          else {
+            int top = 1e9, left = 1e9;
+            if(i > 0) top = dp[i - 1][j];
+            if(j > 0) left = dp[i][j - 1];
+            dp[i][j] = g[i][j] + min(top, left);
+          }
+        }
+      }
+      return dp[m - 1][n - 1];
+    }
+  
+  /*
+  // Memoization
+  
     int solve(int r, int c, vector<vector<int>> &g, vector<vector<int>> &dp){
       if(r < 0 or c < 0) return 1e9;
       if(r == 0 and c == 0) return g[0][0];
@@ -14,4 +36,5 @@ public:
       vector dp(m, vector<int>(n, -1));
       return solve(m - 1, n - 1, g, dp);
     }
+  */
 };
