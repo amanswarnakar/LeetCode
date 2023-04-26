@@ -1,19 +1,17 @@
 class Solution {
 public:
-    int minPathSum(vector<vector<int>>& v) {
-      int m = v.size(), n = v[0].size();
-      vector<vector<int>> dp(m + 1, vector<int>(n + 1, INT_MAX));
-      for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
-          dp[i + 1][j + 1] = v[i][j];
-        }
-      }
-      for(int i = 1; i < m + 1; i++){
-        for(int j = 1; j < n + 1; j++){
-          if(i == 1 and j == 1) continue;
-          dp[i][j] += min(dp[i - 1][j], dp[i][j - 1]);
-        }
-      }
-      return dp[m][n];
+    int solve(int r, int c, vector<vector<int>> &g, vector<vector<int>> &dp){
+      if(r < 0 or c < 0) return 1e9;
+      if(r == 0 and c == 0) return g[0][0];
+      if(dp[r][c] != -1) return dp[r][c];
+      int top = solve(r - 1, c, g, dp);
+      int left = solve(r, c - 1, g, dp);
+      return dp[r][c] = g[r][c] + min(top, left);
+    }
+  
+    int minPathSum(vector<vector<int>>& g) {
+      int m = g.size(), n = g[0].size();
+      vector dp(m, vector<int>(n, -1));
+      return solve(m - 1, n - 1, g, dp);
     }
 };
