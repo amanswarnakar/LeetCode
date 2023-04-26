@@ -1,5 +1,20 @@
 class Solution {
 public:
+    int solve(int r, int c, vector<vector<int>> &v, vector<vector<int>> &dp){
+      if(r == v.size() - 1) return v[r][c];
+      if(dp[r][c] != -1) return dp[r][c];
+      int left = solve(r + 1, c, v, dp);
+      int right = solve(r + 1, c + 1, v, dp);
+      return dp[r][c] = v[r][c] + min(left, right);
+    }
+  
+    int minimumTotal(vector<vector<int>>& v) {
+      int n = v.size();
+      vector<vector<int>> dp(n, vector<int>(n, -1));
+      return solve(0, 0, v, dp);
+    }
+
+  /*
     int solve(int r, int idx, vector<vector<int>> &v, vector<vector<int>> &dp){
       if(r == 0) return v[0][0];
       if(idx < 0 or idx == v[r].size()) return 1e9;
@@ -20,4 +35,5 @@ public:
       }
       return ans;
     }
+  */
 };
