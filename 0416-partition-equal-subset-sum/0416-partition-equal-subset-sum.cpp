@@ -1,5 +1,30 @@
 class Solution {
 public:
+    // Space Optimisation
+  
+    bool canPartition(vector<int>& v) {
+      int n = v.size(), sum = accumulate(v.begin(), v.end(), 0);
+      if((sum & 1) == 1) return false;
+      sum /= 2;
+      vector<bool> prev(sum + 1, 0);
+     
+      if(v[0] <= sum) prev[v[0]] = true;
+      prev[0] = true;
+      
+      for(int i = 1; i < n; i++){
+        vector<bool> curr(sum + 1, 0);
+        for(int j = 1; j < sum + 1; j++){
+          bool notPick = prev[j];
+          bool pick = false;
+          if(v[i] <= j) pick = prev[j - v[i]];
+          curr[j] = pick or notPick;
+        }
+        prev = curr;
+      }
+      return prev[sum];
+    }
+  
+    /*
     // Tabulation
   
     bool canPartition(vector<int>& v) {
@@ -21,6 +46,7 @@ public:
       }
       return dp[n - 1][sum];
     }
+    */
   
     /*
     // Memoization
