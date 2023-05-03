@@ -2,6 +2,27 @@ class Solution {
 public:
     int coinChange(vector<int>& v, int t) {
       int n = v.size();
+      vector<int> prev(t + 1, 0);
+      for(int i = 0; i < t + 1; i++){
+        if(i % v[0] == 0) prev[i] = i / v[0];
+        else prev[i] = 1e9;
+      }
+      for(int i = 1; i < n; i++){
+        vector<int> curr(t + 1, 0);
+        for(int j = 0; j < t + 1; j++){
+          int pick = 1e9;
+          if(v[i] <= j) pick = 1 + curr[j - v[i]];
+          int notPick = prev[j];
+          curr[j] = min(pick, notPick);
+        }
+        prev = curr;
+      }
+      return prev[t] >= 1e9 ? -1 : prev[t];
+    }
+  
+    /*
+    int coinChange(vector<int>& v, int t) {
+      int n = v.size();
       vector<vector<int>> dp(n, vector<int>(t + 1, 0));
       for(int i = 0; i < t + 1; i++){
         if(i % v[0] == 0) dp[0][i] = i / v[0];
@@ -17,6 +38,7 @@ public:
       }
       return dp[n - 1][t] >= 1e9 ? -1 : dp[n - 1][t];
     }
+    */
   
     /*
     int f(int idx, int t, vector<int> &v, vector<vector<int>> &dp){
