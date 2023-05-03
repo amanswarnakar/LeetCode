@@ -1,5 +1,18 @@
 class Solution {
 public:
+    int f(int idx, int t, vector<int> &v){
+      if(t == 0 and idx < 0) return 1;
+      if(idx < 0) return 0;
+      int plus = f(idx - 1, t + v[idx], v);
+      int minus = f(idx - 1, t - v[idx], v);
+      return plus + minus;
+    }
+    int findTargetSumWays(vector<int>& v, int tar) {
+      int n = v.size();
+      return f(n - 1, tar, v);
+    }
+  
+    /*
     int findTargetSumWays(vector<int>& v, int tar) {
       int n = v.size(), sum = accumulate(v.begin(), v.end(), 0);
       if((sum - tar) % 2 or (sum - tar) < 0) return 0;
@@ -21,6 +34,7 @@ public:
       }
       return prev[t];
     }
+    */
   
     /*
     int findTargetSumWays(vector<int>& v, int tar) {
