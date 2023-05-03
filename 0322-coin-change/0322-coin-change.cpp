@@ -2,13 +2,12 @@ class Solution {
 public:
     int coinChange(vector<int>& v, int t) {
       int n = v.size();
-      vector<int> prev(t + 1, 0);
+      vector<int> prev(t + 1, 0), curr(t + 1, 0);
       for(int i = 0; i < t + 1; i++){
         if(i % v[0] == 0) prev[i] = i / v[0];
         else prev[i] = 1e9;
       }
       for(int i = 1; i < n; i++){
-        vector<int> curr(t + 1, 0);
         for(int j = 0; j < t + 1; j++){
           int pick = 1e9;
           if(v[i] <= j) pick = 1 + curr[j - v[i]];
