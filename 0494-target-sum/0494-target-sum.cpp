@@ -1,18 +1,7 @@
 class Solution {
 public:
-    int f(int idx, int t, vector<int> &v){
-      if(t == 0 and idx < 0) return 1;
-      if(idx < 0) return 0;
-      int plus = f(idx - 1, t + v[idx], v);
-      int minus = f(idx - 1, t - v[idx], v);
-      return plus + minus;
-    }
-    int findTargetSumWays(vector<int>& v, int tar) {
-      int n = v.size();
-      return f(n - 1, tar, v);
-    }
+    // Space Optimization
   
-    /*
     int findTargetSumWays(vector<int>& v, int tar) {
       int n = v.size(), sum = accumulate(v.begin(), v.end(), 0);
       if((sum - tar) % 2 or (sum - tar) < 0) return 0;
@@ -34,9 +23,10 @@ public:
       }
       return prev[t];
     }
-    */
   
     /*
+    // Tabulation
+    
     int findTargetSumWays(vector<int>& v, int tar) {
       int n = v.size(), sum = accumulate(v.begin(), v.end(), 0);
       if((sum - tar) % 2 or (sum - tar) < 0) return 0;
@@ -61,6 +51,8 @@ public:
   
   
     /*
+    // Memoization
+      
     int f(int idx, int t, vector<int> &v, vector<vector<int>> &dp){
       if(idx == 0){
         if(v[0] == 0 and t == 0) return 2;
@@ -80,6 +72,22 @@ public:
       int t = (sum - tar) / 2;
       vector<vector<int>> dp(n, vector<int>(t + 1, -1));
       return f(n - 1, t, v, dp);
+    }
+    */
+  
+    /*
+    // Recursion
+    
+    int f(int idx, int t, vector<int> &v){
+      if(t == 0 and idx < 0) return 1;
+      if(idx < 0) return 0;
+      int plus = f(idx - 1, t + v[idx], v);
+      int minus = f(idx - 1, t - v[idx], v);
+      return plus + minus;
+    }
+    int findTargetSumWays(vector<int>& v, int tar) {
+      int n = v.size();
+      return f(n - 1, tar, v);
     }
     */
 };
