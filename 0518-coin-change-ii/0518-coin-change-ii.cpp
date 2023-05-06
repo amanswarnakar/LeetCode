@@ -1,5 +1,27 @@
 class Solution {
 public:
+    int change(int tar, vector<int>& v) {
+      int n = v.size();
+      vector<vector<int>> dp(n, vector<int>(tar + 1, 0));
+      for(int t = 0; t < tar + 1; t++){
+        dp[0][t] = (t % v[0] == 0);
+      }
+      for(int i = 1; i < n; i++){
+        for(int t = 0; t < tar + 1; t++){
+          int pick = 0;
+          if(v[i] <= t) pick = dp[i][t - v[i]];
+          int notPick = dp[i - 1][t];
+          dp[i][t] = pick + notPick;
+        }
+      }
+      // for(auto &i: dp){
+      //   for(auto &j: i) cout<<j<<" ";
+      //   cout<<endl;
+      // }
+      return dp[n - 1][tar];
+    }
+  
+    /*
     int f(int idx, int t, vector<int> &v, vector<vector<int>> &dp){
       if(idx == 0) return (t % v[0] == 0);
       if(dp[idx][t] != -1) return dp[idx][t];
@@ -13,4 +35,5 @@ public:
       vector<vector<int>> dp(n, vector<int>(tar + 1, -1));
       return f(n - 1, tar, v, dp);
     }
+    */
 };
