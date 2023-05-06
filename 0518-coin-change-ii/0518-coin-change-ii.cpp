@@ -2,6 +2,26 @@ class Solution {
 public:
     int change(int tar, vector<int>& v) {
       int n = v.size();
+      // vector<vector<int>> dp(n, vector<int>(tar + 1, 0));
+      vector<int> prev(tar + 1, 0), curr(tar + 1, 0);
+      for(int t = 0; t < tar + 1; t++){
+        prev[t] = (t % v[0] == 0);
+      }
+      for(int i = 1; i < n; i++){
+        for(int t = 0; t < tar + 1; t++){
+          int pick = 0;
+          if(v[i] <= t) pick = curr[t - v[i]];
+          int notPick = prev[t];
+          curr[t] = pick + notPick;
+        }
+        prev = curr;
+      }
+      return prev[tar];
+    }
+  
+    /*
+    int change(int tar, vector<int>& v) {
+      int n = v.size();
       vector<vector<int>> dp(n, vector<int>(tar + 1, 0));
       for(int t = 0; t < tar + 1; t++){
         dp[0][t] = (t % v[0] == 0);
@@ -14,12 +34,10 @@ public:
           dp[i][t] = pick + notPick;
         }
       }
-      // for(auto &i: dp){
-      //   for(auto &j: i) cout<<j<<" ";
-      //   cout<<endl;
-      // }
       return dp[n - 1][tar];
     }
+    */
+  
   
     /*
     int f(int idx, int t, vector<int> &v, vector<vector<int>> &dp){
