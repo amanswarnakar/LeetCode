@@ -5,9 +5,12 @@
  * @return {number}
  */
 var reduce = function(nums, fn, init) {
-  let sum = init;
+  // let sum = init;
   nums.forEach(e => {
-    sum = fn(sum, e);
-  })
-  return sum;
+    init = fn(init, e);
+  });
+  // for(const e of nums){
+  //   sum = fn(sum, e);
+  // }
+  return init;
 };
