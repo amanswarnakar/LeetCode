@@ -4,11 +4,10 @@
  */
 var compose = function(functions) {
 	return function(x) {
-    var res = x;
     for(let i = functions.length - 1; i >= 0; i--){
-      res = functions[i](res);
+      x = functions[i](x);
     }
-    return res;
+    return x;
   }
 };
 
