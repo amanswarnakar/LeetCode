@@ -8,7 +8,7 @@ var once = function(fn) {
     if(!flag){
       flag = true;
       return fn(...args);
-    }
+    } else return undefined;
   }
 };
 
