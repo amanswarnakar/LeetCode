@@ -6,9 +6,8 @@ function memoize(fn) {
   return function(...args) {
     const key = JSON.stringify(args);
     if(key in mp) return mp[key];
-    const fnOutput = fn(...args);
-    mp[key] = fnOutput;
-    return fnOutput;
+    mp[key] = fn(...args);
+    return mp[key];
   }
 }
 
