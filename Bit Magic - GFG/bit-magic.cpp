@@ -36,7 +36,8 @@ class Solution {
         for(int i = 0; i < n / 2; i++){
             if(v[i] != v[n - 1 - i]) ans++;
         }
-        return ans % 2 == 0 ? ans / 2 : ans / 2 + 1;
+        ans = (ans + 1) / 2;
+        return ans;
     }
 };
 
