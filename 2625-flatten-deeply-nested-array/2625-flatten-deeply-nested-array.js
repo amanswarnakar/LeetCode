@@ -4,10 +4,10 @@
  * @return {any[]}
  */
 var flat = function (arr, n) {
-  // if(n === 0) return arr;
+  if(n === 0) return arr;
   const res = [];
   for(const num of arr){
-    if(Array.isArray(num) && n > 0)
+    if(Array.isArray(num))
       res.push(...flat(num, n - 1));
     else res.push(num);
   }
